@@ -1,0 +1,62 @@
+1- clica duas vzs em docker e dut 
+2- login: djr senha: 654123 nos dois 
+3- sudo su e repete a senha acima
+4- nos dois startx
+5- nos dois iniciar, acessórios, lxterminal
+6- nós dois ifconfig para obter o ip
+7- nos dois no eth0, dps do inet end pega o ip e anota 
+8- em uma máquina da ping e o ip da outra máquina pra testar a conexão, para parar ctrl c 
+9- cria pasta na dut usando mkdir com seu nome
+10- entra no diretório criado com cd e o nome da pasta
+11- cria mais dois diretórios com nome cen1 cen2 com o mkdir 
+12- entra na pasta do cen1 
+13- coloca o comando: iperf -s -P 0 -i 0.5 -p 5001 -f k > CEN1_TCP_10s.txt
+14- na outra iperf -c (111.111.111.111 ip da maquina) -t 10
+15- ctrl c na máquina que tá rodando
+16- na máquina que tava parada cat e o nome do arquivo txt (opcional)
+17- dentro da máquina que foi criada as pastas sai do diretório cen1 e vai pra cen2 ../cen2
+18- dentro da cen2: iperf -s -P 0 -i 0.5 -p 5001 -f k > CEN2_TCP_LXCclient_10s.txt
+19- vai na outra máquina, clica em arquivo e nova aba pra facilitar 
+20- docker start e o id do contêiner, qualquer coisa só subir com a setinha dps do enter docker attach é o mesmo id
+21- usa o ifconfig e pega o ip do docker e do dut (opcional)
+22- na mesma onde está criada a nova aba: iperf -c (111.111.111.111 ip contrário) -t 10 e espera 10 segundos 
+23- ctrl c na outra pra parar
+24- na outra aba, ao lado da aba nova, cria um novo diretório com seu nome e entra
+25- cria outro diretório com outro diretório cen2
+26- dentro desse novo diretório: iperf -s -P 0 -i 0.5 -p 5001 -f k > CEN2_TCP_DockerClient_10s.txt
+27- na máquina contrária abre uma nova aba e: lxc-start -n router1 -d 
+28- Depois do enter: lxc-attach -n router1
+28- nessa mesma máquina: iperf -c  ip da máquina contrária -t 10
+29- ctrl c na máquina contrária e cat e o nome do arquivo com tab (opcional)
+30- dentro da nova aba da dut cria mais um diretório e entra dentro dela. Cria mais um diretório com o nome cen3, cen4, cen5
+31- entra na cen3 
+32- dentro da cen3: ifconfig
+33- ainda dentro de cen3: iperf -s -P 0 -i 1 -p 5001 -f k > CEN3_TCP_LXCserver_10s.txt
+34- vai pra aba principal da docker onde tá na pasta cen2 e digita: route add -net 10.0.3.0 netmask 255.255.255.0 gw ip da máquina contrária 
+35- pra conferir ver se tá certo, no mesmo lugar onde vc tá: ping 10.0.3.121 vai começar a aparecer as conexões, só dar ctrl c 
+36- ainda na principal da docker: iperf -c 10.0.3.121 -t 10
+37-  na nova aba da dut ctrl c pra parar 
+38- dentro da nova aba da docker cria uma pasta com nome measurements e dentro dela cria mais três pastas com cen3, cen4, cen5 e entra na cen3 
+39- dentro de cen3 pega o ip com ifconfig 
+40- ainda dentro da cen3: iperf -s -P 0 -i 1 -p 5001 -f k > CEN3_TCP_DockerServer_10s.txt
+41- na principal da dut: route add -net 172.17.0.0 netmask 255.255.0.0 gw id da máquina contrária 
+42- se quiser testar pra ver se tá certo ping 172.17.0.0 e dps ctrl c 
+43- ainda na principal da dut: iperf -c 172.17.0.2 -t 10 
+44- na aba nova da dut vai pra cen4
+45- dentro da cen4: iperf -s -P 0 -i 1 -p 5001 -f k > CEN4_TCP_LXCServerDockerClient_10s.txt
+46- dentro da principal da docker: iperf -c 10.0.3.121 -t 10
+47- ainda no mesmo lugar vai pra cen4 e digita: iperf -s -P 0 -i 1 -p 5001 -f k > CEN4_TCP_DockerServerLXCclient_10s.txt
+48- na nova aba do dut: iperf -c 172.17.0.2 -t 10
+49- vai pra nova aba do dut e entra na cen5 e digita: iperf -s -P 0 -i 1 -p 5001 -f k > CEN5_TCP_LXCServerHostClient_10s.txt
+50- abre o terminal do computador: sudo su 
+51 - apt install iperf 
+52- apt install net-tools
+53- ifconfig e pega o ip que tá na vboxnet 
+54- route add -net 10.0.3.0 netmask 255.255.255.0 gw ip da dut 
+55- route add -net 172.17.0.0 netmask 255.255.0.0 gw ip da docker
+55- pra fazer o teste, ping 172.17.0.2 e ping 10.0.3.121
+56-  ainda no terminal iperf -c 10.0.3.121 -t 10 
+57- na aba nova da docker vai pra aba cen5 e digita: iperf -s -P 0 -i 1 -p 5001 -f k > CEN5_TCP_DockerServerHostClient_10s.txt
+58- No terminal: iperf -c 172.17.0.2 -t 10 e iperf -c 10.0.3.121 -t 10
+59- vai nos arquivos do Linux e da ctrl L digita: SSH://ip da dut e dps SSH://ip da docker 
+60- quando pedir a senha djr e a senha antiga
