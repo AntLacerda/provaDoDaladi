@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .alinhamento{
+            display: flex;
+            flex-direction: row;
+            font-weight: bold;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h1>CENÁRIO 01</h1>
+        <div class="alinhamento">
+            <p>1- clica duas vzs em docker e dut</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>2- login: djr senha: 654123 nos dois</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>3- sudo su e repete a senha acima</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>4- nos dois startx</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>5- nos dois iniciar, acessórios, lxterminal</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>6- nós dois ifconfig para obter o ip</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>7- nos dois no eth0, dps do inet end pega o ip e anota </p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>8- em uma máquina da ping e o ip da outra máquina pra testar a conexão, para parar ctrl c</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>9- cria pasta na dut usando mkdir com seu nome</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>10- entra no diretório criado com cd e o nome da pasta</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>11- cria mais dois diretórios com nome cen1 cen2 com o mkdir </p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>12- entra na pasta do cen1</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>13- coloca o comando: iperf -s -P 0 -i 0.5 -p 5001 -f k > CEN1_TCP_10s.txt</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>14- na outra iperf -c (111.111.111.111 ip da maquina) -t 10</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>15- ctrl c na máquina que tá rodando</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>16- na máquina que tava parada cat e o nome do arquivo txt (opcional)</p>
+            <input type="checkbox">
+        </div>
+    </section>
+    <section>
+        <h1>CENÁRIO 02</h1>
+        <div class="alinhamento">
+            <p>17- dentro da máquina que foi criada as pastas sai do diretório cen1 e vai pra cen2 ../cen2</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>18- dentro da cen2: iperf -s -P 0 -i 0.5 -p 5001 -f k > CEN2_TCP_LXCclient_10s.txt</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>19- vai na outra máquina, clica em arquivo e nova aba pra facilitar </p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>20- docker start e o id do contêiner, qualquer coisa só subir com a setinha dps do enter docker attach é o mesmo id</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>21- usa o ifconfig e pega o ip do docker e do dut (opcional)</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>22- na mesma onde está criada a nova aba: iperf -c (111.111.111.111 ip contrário) -t 10 e espera 10 segundos</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>23- ctrl c na outra pra parar</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>24- na outra aba, na VM Docker, cria um novo diretório com seu nome e entra</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>25- cria outro diretório com outro pasta com nome cen2</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>26- dentro desse novo cen2: iperf -s -P 0 -i 0.5 -p 5001 -f k > CEN2_TCP_DockerClient_10s.txt</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>27- na máquina contrária abre uma nova aba e: lxc-start -n router1 -d </p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>28- Depois do enter: lxc-attach -n router1</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>28- nessa mesma máquina: iperf -c  ip da máquina contrária -t 10</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>29- ctrl c na máquina contrária e cat e o nome do arquivo com tab (opcional)</p>
+            <input type="checkbox">
+        </div>
+    </section>
+    <section>
+        <h1>CENÁRIO 03</h1>
+        <div class="alinhamento">
+            <p>30- dentro da nova aba da dut cria mais um diretório e entra dentro dela. Cria mais um diretório com o nome cen3, cen4, cen5</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>31- entra na cen3</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>32- dentro da cen3: ifconfig</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>33- ainda dentro de cen3: iperf -s -P 0 -i 1 -p 5001 -f k > CEN3_TCP_LXCserver_10s.txt</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>34- vai pra aba principal da docker onde tá na pasta cen2 e digita: route add -net 10.0.3.0 netmask 255.255.255.0 gw ip da máquina contrária</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>35- pra conferir ver se tá certo, no mesmo lugar onde vc tá: ping 10.0.3.121 vai começar a aparecer as conexões, só dar ctrl c </p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>36- ainda na principal da docker: iperf -c 10.0.3.121 -t 10</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>37-  na nova aba da dut ctrl c pra parar </p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>38- dentro da nova aba da docker cria uma pasta com nome measurements e dentro dela cria mais três pastas com cen3, cen4, cen5 e entra na cen3 </p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>39- dentro de cen3 pega o ip com ifconfig </p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>40- ainda dentro da cen3: iperf -s -P 0 -i 1 -p 5001 -f k > CEN3_TCP_DockerServer_10s.txt</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>41- na principal da dut: route add -net 172.17.0.0 netmask 255.255.0.0 gw id da máquina contrária </p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>42- se quiser testar pra ver se tá certo ping 172.17.0.0 e dps ctrl c </p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>43- ainda na principal da dut: iperf -c 172.17.0.2 -t 10 </p>
+            <input type="checkbox">
+        </div>
+    </section>
+    <section>
+        <h1>CENÁRIO 04</h1>
+        <div class="alinhamento">
+            <p>44- na aba nova da dut vai pra cen4</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>45- dentro da cen4: iperf -s -P 0 -i 1 -p 5001 -f k > CEN4_TCP_LXCServerDockerClient_10s.txt</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>46- dentro da principal da docker: iperf -c 10.0.3.121 -t 10</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>47- No container docker (nova aba) entra em cen4 e digita: iperf -s -P 0 -i 1 -p 5001 -f k > CEN4_TCP_DockerServerLXCclient_10s.txt</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>48- na nova aba do dut: iperf -c 172.17.0.2 -t 10</p>
+            <input type="checkbox">
+        </div>
+    </section>
+    <section>
+        <h1>CENÁRIO 05</h1>
+        <div class="alinhamento">
+            <p>49- ainda no container dut entra na cen5 e digita: iperf -s -P 0 -i 1 -p 5001 -f k > CEN5_TCP_LXCServerHostClient_10s.txt</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>50- abre o terminal do computador: sudo su</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>51 - apt install iperf</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>52- apt install net-tools</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>53- ifconfig e pega o ip que tá na vboxnet</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>54- route add -net 10.0.3.0 netmask 255.255.255.0 gw ip da dut</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>55- route add -net 172.17.0.0 netmask 255.255.0.0 gw ip da docker</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>55- pra fazer o teste, ping 172.17.0.2 e ping 10.0.3.121</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>56-  ainda no terminal iperf -c 10.0.3.121 -t 10 </p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>57- na aba nova da docker vai pra aba cen5 e digita: iperf -s -P 0 -i 1 -p 5001 -f k > CEN5_TCP_DockerServerHostClient_10s.txt</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>58- No terminal: iperf -c 172.17.0.2 -t 10 e iperf -c 10.0.3.121 -t 10</p>
+            <input type="checkbox">
+        </div>
+    </section>
+    <section>
+        <h1>FINALIZANDO</h1>
+        <div class="alinhamento">
+            <p>59- vai nos arquivos do Linux e da ctrl L digita: SSH://ip da dut e dps SSH://ip da docker </p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>60- quando pedir a senha djr e a senha antiga</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>61- Depois de pegar os arquivos, da ssh://ip do container dut e depois o ip do container docker</p>
+            <input type="checkbox">
+        </div>
+        <div class="alinhamento">
+            <p>62- O usuário será root e a senha a mesma da antiga</p>
+            <input type="checkbox">
+        </div>
+    </section>
+</body>
+</html>
